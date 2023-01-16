@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://theme/flat_box_style.tres" type="StyleBox" id=2]
+[ext_resource path="res://theme/flat_box_style_click.tres" type="StyleBox" id=3]
+[ext_resource path="res://theme/flat_box_style_hover.tres" type="StyleBox" id=4]
+[ext_resource path="res://fonts/expanse_title.tres" type="DynamicFont" id=5]
+
+[node name="MainMenu" type="ColorRect"]
+margin_right = 768.0
+margin_bottom = 384.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = -32.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 704.0
+margin_bottom = 320.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_right = 704.0
+margin_bottom = 61.0
+size_flags_vertical = 1
+theme = ExtResource( 1 )
+custom_fonts/font = ExtResource( 5 )
+text = "Space Salvage"
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+margin_top = 65.0
+margin_right = 704.0
+margin_bottom = 245.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 249.0
+margin_right = 704.0
+margin_bottom = 320.0
+
+[node name="Container" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 526.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 530.0
+margin_right = 704.0
+margin_bottom = 71.0
+
+[node name="Start" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_right = 174.0
+margin_bottom = 29.0
+theme = ExtResource( 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/normal = ExtResource( 2 )
+text = "START"
+
+[node name="Container" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 33.0
+margin_right = 174.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 0, 5 )
+size_flags_horizontal = 3
+
+[node name="Options" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 174.0
+margin_bottom = 71.0
+theme = ExtResource( 1 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 3 )
+custom_styles/normal = ExtResource( 2 )
+text = "Options"

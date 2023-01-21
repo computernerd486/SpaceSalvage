@@ -1,8 +1,91 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://menus/Main.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game.gd" type="Script" id=3]
+[ext_resource path="res://objects/asteroidspawner.gd" type="Script" id=4]
+[ext_resource path="res://assets/sprites/strip.png" type="Texture" id=5]
+[ext_resource path="res://backgrounds/belt.png" type="Texture" id=6]
+[ext_resource path="res://backgrounds/ParallaxLayer.gd" type="Script" id=7]
+[ext_resource path="res://backgrounds/ParallaxController.gd" type="Script" id=8]
+[ext_resource path="res://backgrounds/belt_plasma.png" type="Texture" id=9]
+[ext_resource path="res://audio/ambiant_explore.ogg" type="AudioStream" id=10]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 64.644, 10 )
 
 [node name="Game" type="Node2D"]
-pause_mode = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 192.0 ],
+"_edit_vertical_guides_": [ 150.0 ]
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource( 8 )
+
+[node name="Base" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 768, 0 )
+script = ExtResource( 7 )
+
+[node name="Belt" type="Sprite" parent="ParallaxBackground/Base"]
+position = Vector2( 768, 190 )
+texture = ExtResource( 6 )
+
+[node name="Plasma" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 1536, 0 )
+script = ExtResource( 7 )
+
+[node name="BeltPlasma" type="Sprite" parent="ParallaxBackground/Plasma"]
+material = SubResource( 2 )
+position = Vector2( 768, 192 )
+texture = ExtResource( 9 )
+
+[node name="Border" type="StaticBody2D" parent="ParallaxBackground"]
+position = Vector2( 79.0001, 385 )
+scale = Vector2( 6.01758, 1 )
+
+[node name="top" type="Sprite" parent="ParallaxBackground/Border"]
+position = Vector2( 42.542, -392 )
+rotation = -3.14159
+texture = ExtResource( 5 )
+offset = Vector2( -8.16358, -22 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 128, 32 )
+
+[node name="bottom" type="Sprite" parent="ParallaxBackground/Border"]
+position = Vector2( 58.9938, 6.99997 )
+texture = ExtResource( 5 )
+offset = Vector2( -8.16358, -22 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 128, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/Border"]
+position = Vector2( 51.0172, 0 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ParallaxBackground/Border"]
+position = Vector2( 50.3525, -388 )
+shape = SubResource( 1 )
 
 [node name="MainMenu" parent="." instance=ExtResource( 1 )]
+visible = false
+
+[node name="PlayerShip" parent="." instance=ExtResource( 2 )]
+position = Vector2( 150, 192 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 830, 192 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.75
+autostart = true
+script = ExtResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true

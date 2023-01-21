@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ambiant_explore.ogg-9392ab7d457e370cb06281f5ff293bf9.oggstr"
+
+[deps]
+
+source_file="res://audio/ambiant_explore.ogg"
+dest_files=[ "res://.import/ambiant_explore.ogg-9392ab7d457e370cb06281f5ff293bf9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

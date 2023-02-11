@@ -25,6 +25,7 @@ func collsion(node) :
 		#state_machine.travel("Explode")
 		ani_player.connect("animation_finished", self, "destroy")
 		ani_player.play("Explode")
+		$AudioStreamPlayer.play()
 		$CollisionShape2D.queue_free()
 		node.queue_free()
 		

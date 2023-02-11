@@ -15,6 +15,8 @@ var shot_ready := false
 const shot_delay := 0.33
 onready var shot_timer := $Timer
 
+export(int) var health := 10
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
